@@ -5,6 +5,34 @@ import Sidebar from '../../components/sidebar-export';
 import { HoverEffect } from '../../components/card'; // Adjust the import path as necessary
 
 export default function Contribute() {
+  const [walletAddress, setWalletAddress] = useState(null);
+  const [walletLoading, setWalletLoading] = useState(true); 
+
+  useEffect(() => {
+    const checkConnection = async () => {
+        try {
+            await window.bitkeep.solana.connect();
+            if (!window.bitkeep.solana.isConnected) {
+                window.location.href = "/";
+            } else {
+                const address = window.bitkeep.solana.publicKey.toString();
+                setWalletAddress(address);
+            }
+        } catch (err) {
+            console.error("Connection was canceled or an error occurred:", err);
+            window.location.href = "/";
+        } finally {
+            setWalletLoading(false); 
+        }
+    };
+
+    if (window.bitkeep.solana) {
+        setTimeout(checkConnection, 100);
+    } else {
+        window.location.href = "/";
+    }
+}, []);
+
     const items = [
         {
           title: "Reentrancy",

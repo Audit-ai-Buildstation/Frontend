@@ -5,11 +5,38 @@ import Sidebar from '../../components/sidebar-export';
 
 
 export default function Contribute() {
+    const [walletAddress, setWalletAddress] = useState(null);
+    const [walletLoading, setWalletLoading] = useState(true); 
     const [file, setFile] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [selectedOption, setSelectedOption] = useState("Select an option"); // State for the dropdown
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef(null); // Create a ref for the dropdown
+
+    useEffect(() => {
+        const checkConnection = async () => {
+            try {
+                await window.bitkeep.solana.connect();
+                if (!window.bitkeep.solana.isConnected) {
+                    window.location.href = "/";
+                } else {
+                    const address = window.bitkeep.solana.publicKey.toString();
+                    setWalletAddress(address);
+                }
+            } catch (err) {
+                console.error("Connection was canceled or an error occurred:", err);
+                window.location.href = "/";
+            } finally {
+                setWalletLoading(false); 
+            }
+        };
+
+        if (window.bitkeep.solana) {
+            setTimeout(checkConnection, 100);
+        } else {
+            window.location.href = "/";
+        }
+    }, []);
 
     const options = [
         "Reentrancy",

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tabler/icons-react": "^3.14.0",
+    "@tonconnect/ui": "^2.0.9",
     "busboy": "^1.6.0",
     "clsx": "^2.1.1",
     "formidable": "^3.5.1",
