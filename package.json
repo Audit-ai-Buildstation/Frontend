@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@solana/pay": "^0.2.5",
+    "@solana/web3.js": "^1.95.3",
     "@tabler/icons-react": "^3.14.0",
     "@tonconnect/ui": "^2.0.9",
+    "bignumber.js": "^9.1.2",
     "busboy": "^1.6.0",
     "clsx": "^2.1.1",
     "formidable": "^3.5.1",

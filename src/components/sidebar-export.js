@@ -1,5 +1,5 @@
 import { Sidebar, SidebarBody, SidebarLink } from '../components/sidebar';
-import { IconHome, IconBrain,IconAd2 } from '@tabler/icons-react'; 
+import { IconHome, IconBrain,IconAd2, IconCoffee } from '@tabler/icons-react'; 
 import Logo from "../app/logo.png";	
 import Image from 'next/image';
 
@@ -18,6 +18,9 @@ export default function Main() {
                 />
                 <SidebarLink
                     link={{ href: "/vulnerabilities", label: "Learn more about vulnerabilities", icon: <IconAd2 /> }}
+                />
+                <SidebarLink
+                    link={{ href: "/subscription", label: "Buy me a coffee", icon: <IconCoffee /> }}
                 />
             </SidebarBody>
         </Sidebar>

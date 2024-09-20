@@ -14,24 +14,21 @@ export default function Main() {
     useEffect(() => {
         const checkConnection = async () => {
             try {
-                await window.bitkeep.solana.connect();
-                if (!window.bitkeep.solana.isConnected) {
+                await window.solana.connect();
+                if (!window.solana.isConnected) {
                     window.location.href = "/";
                 } else {
-                    console.log("Phantom wallet is connected.");
-                    const address = window.bitkeep.solana.publicKey.toString();
+                    const address = window.solana.publicKey.toString();
                     setWalletAddress(address);
-                    console.log("Connected wallet address:", address);
                 }
             } catch (err) {
-                console.error("Connection was canceled or an error occurred:", err);
                 window.location.href = "/";
             } finally {
                 setWalletLoading(false); 
             }
         };
 
-        if (window.bitkeep.solana) {
+        if (window.solana) {
             setTimeout(checkConnection, 100);
         } else {
             window.location.href = "/";

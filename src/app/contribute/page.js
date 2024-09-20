@@ -16,22 +16,21 @@ export default function Contribute() {
     useEffect(() => {
         const checkConnection = async () => {
             try {
-                await window.bitkeep.solana.connect();
-                if (!window.bitkeep.solana.isConnected) {
+                await window.solana.connect();
+                if (!window.solana.isConnected) {
                     window.location.href = "/";
                 } else {
-                    const address = window.bitkeep.solana.publicKey.toString();
+                    const address = window.solana.publicKey.toString();
                     setWalletAddress(address);
                 }
             } catch (err) {
-                console.error("Connection was canceled or an error occurred:", err);
                 window.location.href = "/";
             } finally {
                 setWalletLoading(false); 
             }
         };
 
-        if (window.bitkeep.solana) {
+        if (window.solana) {
             setTimeout(checkConnection, 100);
         } else {
             window.location.href = "/";
@@ -39,27 +38,44 @@ export default function Contribute() {
     }, []);
 
     const options = [
+        "Unencrypted Private Data On-Chain",
+        "Code With No Effects",
+        "Message call with hardcoded gas amount",
+        "Hash Collisions With Multiple Variable Length Arguments",
+        "Unexpected Ether balance",
+        "Presence of unused variables",
+        "Right-To-Left-Override control character (U+202E)",
+        "Typographical Error",
+        "DoS With Block Gas Limit",
+        "Arbitrary Jump with Function Type Variable",
+        "Insufficient Gas Griefing",
+        "Incorrect Inheritance Order",
+        "Write to Arbitrary Storage Location",
+        "Requirement Violation",
+        "Lack of Proper Signature Verification",
+        "Missing Protection against Signature Replay Attacks",
+        "Weak Sources of Randomness from Chain Attributes",
+        "Shadowing State Variables",
+        "Incorrect Constructor Name",
+        "Signature Malleability",
+        "Block values as a proxy for time",
+        "Authorization through tx.origin",
+        "Transaction Order Dependence",
+        "DoS with Failed Call",
+        "Delegatecall to Untrusted Callee",
+        "Use of Deprecated Solidity Functions",
+        "Assert Violation",
+        "Uninitialized Storage Pointer",
+        "State Variable Default Visibility",
         "Reentrancy",
+        "Unprotected SELFDESTRUCT Instruction",
+        "Unprotected Ether Withdrawal",
+        "Unchecked Call Return Value",
+        "Floating Pragma",
+        "Outdated Compiler Version",
         "Integer Overflow and Underflow",
-        "Unchecked Call Return Values",
-        "Denial of Service (DoS)",
-        "Timestamp Dependence",
-        "Front-Running",
-        "Delegatecall Injection",
-        "Access Control Issues",
-        "Unprotected Self-Destruct",
-        "Randomness Vulnerabilities",
-        "Short Address Attack",
-        "Gas Limit Vulnerabilities",
-        "Inadequate Error Handling",
-        "Contract Upgradeability Issues",
-        "Phishing with tx.origin",
-        "Insufficient Testing",
-        "Logic Errors",
-        "Unrestricted Ether Withdrawal",
-        "Contract State Exposure",
-        "Signature Replay Attack"
-    ]; 
+        "Function Default Visibility",
+      ];
 
     const handleOptionSelect = (option) => {
         setSelectedOption(option);
@@ -80,10 +96,62 @@ export default function Contribute() {
 
         const formData = new FormData();
         formData.append("file", file);
-        formData.append("vulnerabilityType", selectedOption); // Add additional data if necessary
+        formData.append("vulnerabilityType", selectedOption); 
+
+        switch(this) {
+            case "text":
+                
+                break;
+            case "image":
+
+                break;
+            case "image":
+                
+                break;
+            case "image":
+                
+                break;
+            case "image":
+                
+                break;
+            case "image":
+                
+                break;
+            case "image":
+                
+                break;
+            case "image":
+                
+                break;
+            case "image":
+                
+                break;
+            case "image":
+                
+                break;
+            case "image":
+                
+                break;
+            case "image":
+                
+                break;
+            case "image":
+                
+                break;
+            case "image":
+                
+                break;
+            case "image":
+                
+                break;
+            
+            default:
+                console.log('default');
+                break;
+        }
 
         try {
-            const response = await fetch("http://localhost:5000/upload", { // Change to your Python backend URL
+            const response = await fetch('http://localhost:5000/upload', { // Change to your Python backend URL
                 method: "POST",
                 body: formData,
             });
